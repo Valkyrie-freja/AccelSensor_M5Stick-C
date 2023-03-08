@@ -25,6 +25,13 @@ class Vector3{
       norm.z /= magnitude;
       return norm;
     };
+    void Print(){
+      Serial.printf("x:%f, \ty:%f, \tz:%f ", x, y, z);
+    }
+    void Println(){
+      this->Print();
+      Serial.println("");
+    }
 };
 
 #endif
