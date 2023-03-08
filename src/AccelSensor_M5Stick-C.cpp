@@ -10,13 +10,13 @@ void setup() {
 
 const int kSamplingRate_Hz     =   60   /*Hz*/;
 const int kSamplingInterval_ms = 1000.0 /*ms*/ / kSamplingRate_Hz;
-int timeMeasuredBefore_ms     =    0   /*ms*/;
+int millisBefore_ms = 0 /*ms*/;
 
 void loop() {
   // measure with constant interval
-  int timeElapsed_ms = millis() - timeMeasuredBefore_ms;
-  if ( timeElapsed_ms < kSamplingInterval_ms ) return;
-  timeMeasuredBefore_ms = millis();
+  int interval_ms = millis() - millisBefore_ms;
+  if ( interval_ms < kSamplingInterval_ms ) return;
+  millisBefore_ms = millis();
 
   // measure accel and gyro.
   Vector3 accel;
