@@ -18,17 +18,15 @@ void loop() {
   if ( timeElapsed_ms < timeDuration_ms ) return;
   timeMeasuredBefore_ms = millis();
 
-  // measure accel
+  // measure accel and gyro.
   Vector3 accel;
-  M5.Mpu6886.getAccelData(&accel.x, &accel.y, &accel.z);
-
-  // print accel datas
-  accel.Print();
-
-  // measure gyro
   Vector3 gyro;
+  M5.Mpu6886.getAccelData(&accel.x, &accel.y, &accel.z);
   M5.Mpu6886.getGyroData(&gyro.x, &gyro.y, &gyro.z);
 
-  //print gyro datas
-  gyro.Println();
+  // send serial message.
+  char serial_message[64];
+  sprintf(serial_message, "%f, %f, %f, %f, %f, %f\n",
+          accel.x, accel.y, accel.z, gyro.x, gyro.y, gyro.z);
+  Serial.print(serial_message);
 }
