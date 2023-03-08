@@ -8,14 +8,14 @@ void setup() {
   Serial.begin(9600);
 }
 
-const int samplingRate_Hz =   60   /*Hz*/;
-const int timeDuration_ms = 1000.0 /*ms*/ / samplingRate_Hz;
-int timeMeasuredBefore_ms =    0   /*ms*/;
+const int kSamplingRate_Hz     =   60   /*Hz*/;
+const int kSamplingInterval_ms = 1000.0 /*ms*/ / kSamplingRate_Hz;
+int timeMeasuredBefore_ms     =    0   /*ms*/;
 
 void loop() {
   // measure with constant interval
-  const int timeElapsed_ms = millis() - timeMeasuredBefore_ms;
-  if ( timeElapsed_ms < timeDuration_ms ) return;
+  int timeElapsed_ms = millis() - timeMeasuredBefore_ms;
+  if ( timeElapsed_ms < kSamplingInterval_ms ) return;
   timeMeasuredBefore_ms = millis();
 
   // measure accel and gyro.
